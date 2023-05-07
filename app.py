@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from process import *
+from process import get_key,import_ds,getEmbeddings,semantic_search,get_query_embed,getClosestNeighbours,display_news,getUMAPEmbed,plot2DChart
 
 df = import_ds()
 
