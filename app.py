@@ -9,9 +9,9 @@ st.title('AFri News Multilingual Embedding')
 
 form = st.form(key="user_settings")
 
-#container = st.container()
+textcontainer = st.container()
 
-placeholder = st.empty()
+plotcontainer = st.container()
 
 with form:
 
@@ -42,10 +42,11 @@ with form:
         
         umap_embeds  = getUMAPEmbed(embeddings)
         
+        text_news = display_news(df,nearest_ids)
         
-        #text_news = display_news(df,nearest_ids)
+        fig = plot2DChart(df, umap_embeds)
         
-        with placeholder.container():
+        textcontainer.write(text_news['title'])
         
-            fig = plot2DChart(df, umap_embeds)
+        plotcontainer.write(fig)
         

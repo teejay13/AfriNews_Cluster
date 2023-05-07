@@ -15,7 +15,7 @@ def inspect():
     
 def load():
     try:
-        langs = ['amharic','english','hausa','swahili','yoruba','igbo']
+        langs = ['amharic','hausa','swahili','yoruba','igbo']
         
         for lang in langs:
 
@@ -28,5 +28,5 @@ def load():
         logging.debug(ex)
 
 if __name__ == '__main__':
-    print(inspect())
-    #load()
+    #print(inspect())
+    load()

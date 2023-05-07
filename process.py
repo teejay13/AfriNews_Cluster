@@ -15,19 +15,19 @@ def get_key():
 
 
 def import_ds():
-    newsfiles = ['amharic','english','hausa','swahili','yoruba','igbo']
+    newsfiles = ['amharic','hausa','swahili','yoruba','igbo']
     
     df_am =  pd.read_csv(f'{newsfiles[0]}.csv')
     df_am = df_am.sample(frac=0.5)
     #df_en =  pd.read_csv(f'{newsfiles[1]}.csv')
     #df_en = df_en.sample(frac=0.3)
-    df_hs =  pd.read_csv(f'{newsfiles[2]}.csv')
+    df_hs =  pd.read_csv(f'{newsfiles[1]}.csv')
     df_hs = df_hs.sample(frac=0.5)
-    df_sw =  pd.read_csv(f'{newsfiles[3]}.csv')
+    df_sw =  pd.read_csv(f'{newsfiles[2]}.csv')
     df_sw = df_sw.sample(frac=0.5)
-    df_yr =  pd.read_csv(f'{newsfiles[4]}.csv')
+    df_yr =  pd.read_csv(f'{newsfiles[3]}.csv')
     df_yr = df_yr.sample(frac=0.5)
-    df_ig =  pd.read_csv(f'{newsfiles[5]}.csv')
+    df_ig =  pd.read_csv(f'{newsfiles[4]}.csv')
     df_ig = df_ig.sample(frac=0.5)
     
     df_news = pd.concat([df_am,df_hs,df_sw,df_yr,df_ig],axis=0)
@@ -109,11 +109,11 @@ def plot2DChart(df, umap_embeds, clusters=None):
     if clusters is None:
         clusters = {}
 
-    df_explore = pd.DataFrame(data={'url': df['url'], 'text': df['text']})
+    df_explore = pd.DataFrame(data={'url': df['url'], 'title': df['title']})
     df_explore['x'] = umap_embeds[:, 0]
     df_explore['y'] = umap_embeds[:, 1]
 
-
+    print(df_explore)
     # Plot
     fig = px.scatter(df_explore, x='x', y='y', hover_data=['title'])
 
