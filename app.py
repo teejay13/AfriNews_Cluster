@@ -1,6 +1,6 @@
 import streamlit as st
 
-from process import get_key,import_ds,getEmbeddings,semantic_search,get_query_embed,getClosestNeighbours,display_news,getUMAPEmbed,plot2DChart
+from process import *
 
 df = import_ds()
 
