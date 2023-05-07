@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from annoy import AnnoyIndex
 import pandas as pd
 import numpy as np
@@ -10,8 +10,9 @@ import plotly.graph_objects as go
 
 
 def get_key():
-    load_dotenv()
-    return os.getenv("COHERE_API_KEY")
+    key =  "7rMjNpj7LLTNlAcoR1Sc6cH23aURrBQoMPi9vzam"
+    #load_dotenv()
+    return key
 
 
 def import_ds():
@@ -90,6 +91,7 @@ def getClosestNeighbours(indexfile,query_embed,neighbours=15):
 def display_news(df,similar_item_ids):
     # Format the results
     #print(similar_item_ids)
+    
     results = pd.DataFrame(data={'title': df.iloc[similar_item_ids[0]]['title'],
                                  'url': df.iloc[similar_item_ids[0]]['url'],
                                   'summary': df.iloc[similar_item_ids[0]]['summary']})
@@ -109,27 +111,13 @@ def plot2DChart(df, umap_embeds, clusters=None):
     if clusters is None:
         clusters = {}
 
-    df_explore = pd.DataFrame(data={'url': df['url'], 'title': df['title']})
-    df_explore['x'] = umap_embeds[:, 0]
-    df_explore['y'] = umap_embeds[:, 1]
+    df_viz = pd.DataFrame(data={'url': df['url'], 'title': df['title']})
+    df_viz['x'] = umap_embeds[:, 0]
+    df_viz['y'] = umap_embeds[:, 1]
 
-    print(df_explore)
+    #print(df_explore)
     # Plot
-    fig = px.scatter(df_explore, x='x', y='y', hover_data=['title'])
-
-    for cluster in clusters.values():
-        high_freq_words = str(list({x: count for x, count in cluster[2].items() if count >= 3}.keys())[:10])
-        fig.add_trace(go.Scatter(
-            x=cluster[0],
-            y=cluster[1],
-            fill="toself",
-            mode='lines',
-            text=high_freq_words,
-            opacity=0.5,
-            showlegend=False
-
-        ))
-
+    fig = px.scatter(df_viz, x='x', y='y', hover_data=['title'])
 
 
     fig.data = fig.data[::-1]

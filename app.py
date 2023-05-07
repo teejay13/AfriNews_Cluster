@@ -46,7 +46,7 @@ with form:
         
         fig = plot2DChart(df, umap_embeds)
         
-        textcontainer.write(text_news['title'])
+        textcontainer.write(text_news)
         
         plotcontainer.write(fig)
         
